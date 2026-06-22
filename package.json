@@ -18,7 +18,7 @@
     "db:seed": "prisma db seed",
     "db:demo-photos": "tsx scripts/seed-demo-photos.ts",
     "db:setup": "prisma migrate dev && prisma db seed",
-    "d1:migrate": "powershell -Command \"Get-ChildItem prisma/migrations -Directory | Sort-Object Name | ForEach-Object { npx wrangler d1 execute bolo-lia-db --remote --file=(Join-Path $_.FullName 'migration.sql') }\"",
+    "d1:migrate": "node scripts/d1-migrate.mjs",
     "d1:seed": "wrangler d1 execute bolo-lia-db --remote --file=prisma/d1-seed.sql",
     "postinstall": "prisma generate"
   },

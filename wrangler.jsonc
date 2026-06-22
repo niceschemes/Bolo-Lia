@@ -4,6 +4,9 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "vars": {
+    "AUTH_SECRET": "bololia-maria-doces-prod-2026"
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"

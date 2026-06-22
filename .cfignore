@@ -1,0 +1,13 @@
+# Não enviar no upload direto do Cloudflare Pages
+node_modules/
+.next/
+out/
+.git/
+coverage/
+*.db
+*.db-journal
+.env*
+src/generated/
+public/uploads/*
+!public/uploads/.gitkeep
+.DS_Store

@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Settings {
+  id           String @id @default("default")
+  storeName    String @default("Doces da Maria")
+  pixKey       String @default("")
+  whatsapp     String @default("")
+  themeColor   String @default("#b45309")
+  logoUrl      String @default("")
+  emptyMessage String @default("")
+  aboutText    String @default("")
+  address      String @default("")
+  hours        String @default("")
+}
+
+model Product {
+  id         String  @id @default(cuid())
+  name       String
+  price      Int
+  imageUrl   String  @default("")
+  pixBrCode  String  @default("")
+  promoText  String  @default("")
+  quantity   Int     @default(0)
+  isActive   Boolean @default(true)
+  isFeatured Boolean @default(false)
+  sortOrder  Int     @default(0)
+}
+
+model Admin {
+  id           String @id @default("admin")
+  passwordHash String
+}

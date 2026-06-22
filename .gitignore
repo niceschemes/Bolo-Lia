@@ -16,9 +16,22 @@
 # next.js
 /.next/
 /out/
+/.open-next/
+/.wrangler/
+
+# cloudflare local secrets
+.dev.vars
 
 # production
 /build
+
+# database (local only — regenera com npm run db:setup)
+*.db
+*.db-journal
+/prisma/dev.db
+
+# prisma client (regenera com npm install → postinstall)
+/src/generated/
 
 # misc
 .DS_Store
@@ -39,3 +52,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# uploads (logos)
+/public/uploads/*
+!/public/uploads/.gitkeep

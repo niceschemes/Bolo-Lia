@@ -1,0 +1,18 @@
+{
+  "name": "Bolsinha — Doces da Maria",
+  "short_name": "Bolsinha",
+  "description": "Confeitaria artesanal moderna — cardápio do dia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff8f2",
+  "theme_color": "#8b5e3c",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

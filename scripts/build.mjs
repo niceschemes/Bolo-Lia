@@ -17,7 +17,7 @@ if (existsSync(INNER_FLAG)) {
 if (process.env.CI === "true") {
   writeFileSync(INNER_FLAG, "");
   try {
-    run("npx opennextjs-cloudflare build");
+    run("npx opennextjs-cloudflare build --minify");
   } finally {
     unlinkSync(INNER_FLAG);
   }

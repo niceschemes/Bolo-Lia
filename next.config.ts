@@ -1,4 +1,7 @@
 import type { NextConfig } from "next";
+import path from "node:path";
+
+const isCiBuild = process.env.CI === "true";
 
 const nextConfig: NextConfig = {
   serverExternalPackages: [
@@ -7,8 +10,21 @@ const nextConfig: NextConfig = {
     "@prisma/client",
     "@prisma/adapter-d1",
     ".prisma/client",
+    "@libsql/client",
+    "@vercel/blob",
   ],
+  turbopack: isCiBuild
+    ? {
+        resolveAlias: {
+          "@/lib/prisma-local": path.join(
+            process.cwd(),
+            "src/lib/prisma-local.stub.ts",
+          ),
+        },
+      }
+    : undefined,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

@@ -1,4 +1,4 @@
-import { put } from "@vercel/blob";
+import type { PutBlobResult } from "@vercel/blob";
 
 const MAX_BYTES = 2 * 1024 * 1024;
 
@@ -26,7 +26,8 @@ export async function saveImage(
   const filename = `${key}.${extension}`;
 
   if (process.env.BLOB_READ_WRITE_TOKEN) {
-    const blob = await put(`uploads/${filename}`, file, {
+    const { put } = await import("@vercel/blob");
+    const blob: PutBlobResult = await put(`uploads/${filename}`, file, {
       access: "public",
       addRandomSuffix: true,
     });

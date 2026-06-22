@@ -1,19 +1,8 @@
 import { cache } from "react";
 import { PrismaClient } from "@/generated/prisma/client";
+import { getLocalPrismaClient } from "@/lib/prisma-local";
 
 type D1Database = import("@cloudflare/workers-types").D1Database;
-
-const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
-
-function createLocalPrismaClient(): PrismaClient {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { PrismaBetterSqlite3 } = require("@prisma/adapter-better-sqlite3");
-  return new PrismaClient({
-    adapter: new PrismaBetterSqlite3({
-      url: process.env.DATABASE_URL ?? "file:./dev.db",
-    }),
-  });
-}
 
 function createD1PrismaClient(d1: D1Database): PrismaClient {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -37,11 +26,7 @@ function getCloudflareD1(): D1Database | null {
 export const getPrisma = cache((): PrismaClient => {
   const d1 = getCloudflareD1();
   if (d1) return createD1PrismaClient(d1);
-
-  if (!globalForPrisma.prisma) {
-    globalForPrisma.prisma = createLocalPrismaClient();
-  }
-  return globalForPrisma.prisma;
+  return getLocalPrismaClient();
 });
 
 export const getPrismaAsync = cache(async (): Promise<PrismaClient> => {

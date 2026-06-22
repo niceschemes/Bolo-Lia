@@ -18,6 +18,7 @@
 /out/
 /.open-next/
 /.wrangler/
+.open-next-inner-build
 
 # cloudflare local secrets
 .dev.vars
